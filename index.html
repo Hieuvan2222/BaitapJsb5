@@ -15,46 +15,83 @@
 <body>
   <!-- BÀI 1 -->
   <div class="container">
-    <h2>QUẢN LÍ TUYỂN SINH </h2>
+    <h2 class="text-center">QUẢN LÍ TUYỂN SINH </h2>
 
     <form>
-      <input id="diemChuan" type="number" placeholder="Điểm chuẩn " class="py-1">
-      <input id="khuVuc" type="text" placeholder="Khu Vực" class="py-1">
-      <input id="doiTuong" type="text" placeholder="Đối Tượng" class="py-1">
-
-      <input id="thuMot" type="number" placeholder="Điểm môn thứ 1 " class="mt-2 py-1">
-      <input id="thuHai" type="number" placeholder="Điểm môn thứ 2" class="mt-2 py-1">
-      <input id="thuBa" type="number" placeholder="Điểm môn thứ 3 " class="mt-2 py-1">
+      <input id="diemChuan" type="number" placeholder="Điểm chuẩn "class=" form-control form__input mt-2 py-1">
+      <div class="form-group mt-3 ">
+        <select class="form-control" id="khuVuc">
+          <option>Khu Vực</option>
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+      </div>
+      <div class="form-group mt-3">
+        <select class="form-control" id="doiTuong">
+          <option>Đối Tượng</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <input id="thuMot" type="number" placeholder="Điểm môn thứ 1 " class=" form-control form__input mt-2 py-1">
+      <input id="thuHai" type="number" placeholder="Điểm môn thứ 2" class=" form-control form__input mt-2 py-1">
+      <input id="thuBa" type="number" placeholder="Điểm môn thứ 3 " class=" form-control form__input mt-2 py-1">
       <button type="button" id="btnTs" class="btn btn-primary d-block mt-2" onclick="">Kết Quả</button>
-      <p id="resutl"> </p>
+      <p id="resutl" class="alert alert-info mt-3"> </p>
     </form>
 
 
   </div>
   <!-- BÀI 2 -->
-  <div class="container">
-    <H2> Tính Tiền Điện</H2>
-    <form >
-      <input id="hoTen" type="text" placeholder="Họ Và Tên ">
-      <input id="soKw" type="number" placeholder="Số KW">
-      <button class="btn btn-danger" id="btnKqua" type="button"> Kết Quả </button>
-      <p id="txtResutl"></p>
+  <div class="container mt-5">
+    <H2 class="text-center"> Tính Tiền Điện</H2>
+    <form>
+      <input id="hoTen" type="text" placeholder="Họ Và Tên " class=" form-control form__input mt-2 py-1">
+      <input id="soKw" type="number" placeholder="Số KW" class=" form-control form__input mt-2 py-1">
+      <button class="btn btn-danger mt-2" id="btnKqua" type="button"> Kết Quả </button>
+      <p id="txtResutl" class="alert alert-info mt-3"></p>
     </form>
   </div>
   <!-- BÀI 3 -->
-  <div class="container">
-    <h2>Tính Thuế Thu Nhập Cá Nhân </h2>
-    <form >
-      <input id="hvTen" type="text" placeholder="Họ Và Tên " >
-      <input id="thuNhap" type="number" placeholder="Tổng thu nhập năm ">
-      <input id="soNguoi" type="number" placeholder="Số người phụ thuộc">
-      <button onclick="tinhThue()" type="button" class="btn btn-secondary">Kết Quả</button>
-      <p id="txtThue"></p>
+  <div class="container mt-5">
+    <h2 class="text-center">Tính Thuế Thu Nhập Cá Nhân </h2>
+    <form>
+      <input id="hvTen" type="text" placeholder="Họ Và Tên " class=" form-control form__input mt-2 py-1">
+      <input id="thuNhap" type="number" placeholder="Tổng thu nhập năm " class=" form-control form__input mt-2 py-1">
+      <input id="soNguoi" type="number" placeholder="Số người phụ thuộc" class=" form-control form__input mt-2 py-1">
+      <button onclick="tinhThue()" type="button" class="btn btn-secondary mt-3">Kết Quả</button>
+      <p id="txtThue" class="alert alert-info mt-3"></p>
     </form>
   </div>
 
-
-
+  <!-- BÀI 4 -->
+  <div class="container mt-5">
+    
+        <h2 class="text-center">TÍNH TIỀN CÁP</h2>    
+        <div class="body">
+            <div class="form-group pt-3">
+                <select class="form-control form__input" id="khaHang" onchange="tienCap()">
+                    <option value="">Chọn loại khách hàng</option>
+                    <option value="people">Nhà Dân</option>
+                    <option value="company">Doanh Nghiệp</option>                                      
+                </select>
+            </div>
+            <div class="form-group pt-3">
+                <input type="text" class="form-control form__input" id="nhapMaKH" placeholder="Nhập mã khách hàng">
+            </div>
+            <div class="form-group pt-3">
+                <input type="number" class="form-control form__input" id="kenhCc" placeholder="Số kênh cao cấp">
+            </div>
+            <div class="form-group pt-3">           
+                <input type="number" style="display: none;" class="form-control form__input" id="ketNoi" placeholder="Số kết nối">
+            </div>
+            <button type="button" class="btn btn-primary" id="btnTinhTien">Tính tiền cáp</button>
+            <p class="alert alert-info mt-3 py-3" id="txtNotify4" ></p>
+        </div>
+   
+  </div>
 
 
 
@@ -73,6 +110,25 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="./js/main.js"></script>
+  <script>
+    function myFunction() {
+      var x = document.getElementById("khaHang").value;
+      console.log("abccc")
+      if (x == doaNgiep) {
+        document.getElementById("ketNoi").style.display = "none"
+        
+      }
+      
+    }
+      
+    
+  </script>
+  
+
+    
+ 
+
+
 </body>
 
 </html>

@@ -90,26 +90,82 @@
    var hoTen = document.getElementById("hvTen").value;
    var thuNhap = document.getElementById("thuNhap").value;
    var soNguoi = document.getElementById("soNguoi").value;
-   total = thuNhap - 4 - soNguoi * 1.6;
-   if (thuNhap <= 60) {
-      total = thuNhap * duoi_60 ;
-      
-   }else if(thuNhap > 60 && thuNhap <= 120 ){
-      total = 60 * duoi_60 + (thuNhap - 60)*tu60_120;
-   }else if( thuNhap > 120 && thuNhap <= 210){
-      total = 60 * duoi_60 + 60 * tu60_120 + (thuNhap - 120 ) * tu120_210;
-   }else if (thuNhap > 210 && thuNhap <= 384){
-      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + (thuNhap - 210 ) * tu210_384;
-   }else if(thuNhap > 384 && thuNhap <= 624 ){
-      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + (thuNhap - 384) * tu384_624;
-   }else if(thuNhap > 624 && thuNhap <= 960){
-      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + 240 * tu384_624 + (thuNhap - 624 )*tu624_960;
+   var total =  thuNhap - 4 - (soNguoi * 1.6) ;
+   console.log(total)
+   if (total <= 60) {
+      total = total * duoi_60 ;
+   }else if(total > 60 && total <= 120 ){
+      total = 60 * duoi_60 + (total - 60)*tu60_120;
+   }else if( total > 120 && total <= 210){
+      total = 60 * duoi_60 + 60 * tu60_120 + (total - 120 ) * tu120_210;
+   }else if (total > 210 && total <= 384){
+      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + (total - 210 ) * tu210_384;
+   }else if(total > 384 && total <= 624 ){
+      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + (total - 384) * tu384_624;
+   }else if(total > 624 && total <= 960){
+      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + 240 * tu384_624 + (total - 624 )*tu624_960;
    }else {
-      total =60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + 240 * tu384_624 + 336*tu624_960 + (thuNhap-960) * tren960;
+      total =60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + 240 * tu384_624 + 336*tu624_960 + (total-960) * tren960;
    }
-   document.getElementById("txtThue").innerHTML = " Thuế Thu Nhập Cá Nhân " + total ;
+   document.getElementById("txtThue").innerHTML = " Họ Và Tên: " + hoTen + "<br> Thuế Thu Nhập Cá Nhân " + total ;
 
  }
+
+//  BÀI 4
+
+const billNd = 4.5 ;
+const servNd = 20.5 ;
+const chanNd = 7.5 ;
+const billDn = 15 ;
+const serv_10_Dn = 75 ;
+const serv_Them_Dn = 5 ;
+const chanDn = 50 ;
+ 
+ function tienCap() {
+   var select = document.getElementById("khaHang").value;
+   document.getElementById("ketNoi").style.display = "company" == select ? "block" : "none";
+}
+
+function calcExercise4() {
+   var select = document.getElementById("khaHang").value;
+   var customer =document.getElementById("nhapMaKH").value;
+   var channel = document.getElementById("kenhCc").value;
+   var numCon = document.getElementById("ketNoi").value;
+   var totalCable = 0;
+    select == "company" 
+       ? (totalCable = calcTotal(billDn,serv_10_Dn,chanDn,channel,numCon,serv_Them_Dn))
+       : select == "people" 
+           ? (totalCable = calcTotal(billNd, servNd, chanNd,channel,0,0))
+
+           : alert("Vui lòng chọn loại khách hàng"),
+
+
+       document.getElementById("txtNotify4").innerHTML = "Mã khách hàng: " + customer + "<br> Tiền cáp là: "+ "$" + totalCable;
+
+}
+
+
+function calcTotal(p1, p2, kcc, channel, skn, mkn) {
+
+/*  p1 : phí xử lý hóa đơn
+   p2 : phí dịch vụ cơ bản
+   kcc: phí mỗi kênh cao cấp
+   skn: số kết nối của khách hàng doanh nghiệp
+   mkn: phí tính thêm cho mỗi kết nối kể từ kết nối thứ 11
+*/
+
+   var tong = p1 + p2 + kcc * channel;
+   return skn > 10 && (tong = tong + ((skn - 10) * mkn)), tong;
+}
+
+function getELE(id) {
+   return document.getElementById(id);
+
+}
+
+document.getElementById("btnTinhTien").onclick = calcExercise4 ;
+
+
 
 
     
