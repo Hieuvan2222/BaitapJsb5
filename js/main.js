@@ -90,24 +90,27 @@
    var hoTen = document.getElementById("hvTen").value;
    var thuNhap = document.getElementById("thuNhap").value;
    var soNguoi = document.getElementById("soNguoi").value;
-   var total =  thuNhap - 4 - (soNguoi * 1.6) ;
-   console.log(total)
-   if (total <= 60) {
+   var total =  thuNhap - 4e+6 - (soNguoi * 16e+5) ;
+   
+   if (total <= 60e+6) {
       total = total * duoi_60 ;
-   }else if(total > 60 && total <= 120 ){
-      total = 60 * duoi_60 + (total - 60)*tu60_120;
-   }else if( total > 120 && total <= 210){
-      total = 60 * duoi_60 + 60 * tu60_120 + (total - 120 ) * tu120_210;
-   }else if (total > 210 && total <= 384){
-      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + (total - 210 ) * tu210_384;
-   }else if(total > 384 && total <= 624 ){
-      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + (total - 384) * tu384_624;
-   }else if(total > 624 && total <= 960){
-      total = 60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + 240 * tu384_624 + (total - 624 )*tu624_960;
+   }else if(total > 60e+6 && total <= 120e+6 ){
+      total = 60e+6 * duoi_60 + (total - 60e+6)*tu60_120;
+   }else if( total > 120e+6 && total <= 210e+6){
+      total = 60e+6 * duoi_60 + 60e+6 * tu60_120 + (total - 120e+6 ) * tu120_210;
+   }else if (total > 210e+6 && total <= 384e+6){
+      total = 60e+6 * duoi_60 + 60e+6 * tu60_120 + 90e+6 * tu120_210 + (total - 210e+6 ) * tu210_384;
+   }else if(total > 384e+6 && total <= 624e+6 ){
+      total = 60e+6 * duoi_60 + 60e+6 * tu60_120 + 90e+6 * tu120_210 + 174e+6 * tu210_384 + (total - 384e+6) * tu384_624;
+   }else if(total > 624e+6 && total <= 960e+6){
+      total = 60e+6 * duoi_60 + 60e+6 * tu60_120 + 90e+6 * tu120_210 + 174e+6 * tu210_384 + 240e+6 * tu384_624 + (total - 624e+6 )*tu624_960;
    }else {
       total =60 * duoi_60 + 60 * tu60_120 + 90 * tu120_210 + 174 * tu210_384 + 240 * tu384_624 + 336*tu624_960 + (total-960) * tren960;
    }
-   document.getElementById("txtThue").innerHTML = " Họ Và Tên: " + hoTen + "<br> Thuế Thu Nhập Cá Nhân " + total ;
+
+   var  total = new Intl.NumberFormat().format(total)
+   document.getElementById("txtThue").innerHTML = " Họ Và Tên: " + hoTen + "<br> Thuế Thu Nhập Cá Nhân " + total;
+   
 
  }
 
